@@ -1,0 +1,26 @@
+/* search wrapper */
+
+.search-wrapper {
+  display: flex;  
+  align-items: center;
+  border:1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  width: 60%;
+}
+
+.search-wrapper input {
+  flex:1;
+  border:none;
+  outline:none;
+  padding: 5px;     
+}
+
+.mdSearch {
+  cursor: pointer;
+  color:#888;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+

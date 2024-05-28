@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+.App {
+  margin: 50px;
+  display:grid;
+  gap:30px;    
+  grid-template-areas: 
+    'search '
+    'list list list list list'
+  ;
+  justify-items: center;
+}
+
+.App img {
+  margin-bottom: 3rem;  
+}
+

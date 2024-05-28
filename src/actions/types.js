@@ -1,0 +1,2 @@
+export const SET_POCKEMONS = 'SET_POCKEMONS'
+export const GET_POCKEMONS = 'GET_POCKEMONS'
