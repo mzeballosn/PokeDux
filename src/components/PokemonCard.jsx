@@ -1,15 +1,15 @@
 import './pockemonCard.css'
 
 
-const PokemonCard = ({ pockemon }) => {
-  const cover = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png'
+const PokemonCard = ({ name,image }) => {
+  const cover = image
   return (
     <div className='container-card'>
       <div className='cover-img'>
-          <img src={cover} className='imgs'/>
+          <img src={cover} className='imgs' alt={name}/>
       </div>
       <div className='info'>
-         <span> {pockemon.name}</span> 
+         <span> {name}</span> 
       </div>        
      
     </div>

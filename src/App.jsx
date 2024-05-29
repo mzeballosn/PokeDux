@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setPockemons } from './actions'
 import   PokemonList from './components/PokemonList'
 import { useEffect } from 'react'
-import   getPokemon from './api'
+import   {getPokemon, getPokemonDetails} from './api'
 import   Searcher from './components/Searcher'
 
 //function App({ pockemons, setPockemons }) {    // no se pasan los props al usar hooks
@@ -26,7 +26,8 @@ function App(){
   useEffect(()=>{  
     const fetchPockemon = async ( ) => {
       const result = await getPokemon()
-      dispatch(setPockemons(result))
+      const resultDetails = await Promise.all(result.map(pockemon => getPokemonDetails(pockemon)))
+      dispatch(setPockemons(resultDetails))
     }  
     fetchPockemon()
     
