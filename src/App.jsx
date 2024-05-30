@@ -2,10 +2,12 @@ import './App.css'
 //import { connect } from 'react-redux'  // al usar hooks ya no se usa el connect
 import { useDispatch, useSelector } from 'react-redux' 
 //import { setPockemons as setPockemonsActions } from './actions' // al usar hook ya no se renombra
-import { setPockemons } from './actions'
+//import { getPockemonsWithDetails, setPockemons } from './actions'
+import { getPockemonsWithDetails} from './actions'
 import   PokemonList from './components/PokemonList'
 import { useEffect } from 'react'
-import   {getPokemon, getPokemonDetails} from './api'
+//import   {getPokemon, getPokemonDetails} from './api'
+import   {getPokemon} from './api'
 import   Searcher from './components/Searcher'
 
 //function App({ pockemons, setPockemons }) {    // no se pasan los props al usar hooks
@@ -24,10 +26,20 @@ function App(){
   const dispatch = useDispatch();
 
   useEffect(()=>{  
-    const fetchPockemon = async ( ) => {
+    const fetchPockemon = async ( ) => {      
       const result = await getPokemon()
+      
+      // Se dejo de utilizar para obtener el detalle o imagen del pockemon
+      //dispatch(setPockemons(result))  
+    
+      // Se utilizo Pomise.All para encadenar las promesas y obtener la imagen cover del pokemon
+      /*
       const resultDetails = await Promise.all(result.map(pockemon => getPokemonDetails(pockemon)))
+      console.log(resultDetails)
       dispatch(setPockemons(resultDetails))
+      */      
+      dispatch(getPockemonsWithDetails(result))
+
     }  
     fetchPockemon()
     
@@ -38,18 +50,20 @@ function App(){
       <img src='' />
       <Searcher />      
       {
-        !pockemons.length ? (<h1>Loading</h1>) : 
+        !pockemons?.length ? (<h1>Loading</h1>) : 
           <PokemonList pockemons={pockemons} />      
       }
           
     </div>
   )
 }
+
 // mapStateToProps es una función que recibe el estado y retorna el objeto que 
 // envía las propiedades o props de los componentes que se están conectando a Redux
     // const mapStateToProps = (state) => ({ //dejamos de utilizar al usar hooks
     //  pockemons: state.pockemons
     // })
+
 // mapDispatchToProps también es una funcion que recibe el dispacher de Redux
 // y retorna un objeto que es mapeado a las props de los components pero con loa actios 
 // creators establecidos

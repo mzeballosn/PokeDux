@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 //import { legacy_createStore as createStore,compose } from 'redux'
 import {compose,  applyMiddleware,legacy_createStore as createStore} from 'redux'
 import { logger } from './middleware'
+import { thunk } from 'redux-thunk'
 
 /* no funciona con esta version de redux
 const composedEnhancers = compose(
@@ -17,7 +18,7 @@ const composedEnhancers = compose(
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const composedEnhancers = composeEnhancers(
-  applyMiddleware(logger)
+  applyMiddleware(thunk, logger)
 );
 
 
