@@ -1,2 +1,3 @@
 export const SET_POCKEMONS = 'SET_POCKEMONS'
-export const GET_POCKEMONS = 'GET_POCKEMONS'
+export const SET_LOADING = 'SET_LOADING'
+export const SET_FAVORITE = 'SET_FAVORITE'

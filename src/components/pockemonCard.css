@@ -7,21 +7,24 @@
      overflow: hidden;
      box-shadow:inset;
      margin: 5px;
+     text-align:justify;
 }   
-.cover-img{
+.container-card > .cover-img{
     width: auto;
     height: 150px;        
     border-radius: 5px;
     
 }
 .imgs{    
-    height: 100%;
-    width: 100%;
     background-position: center;
     background-size: cover;
 }
 .info{
-    padding: 10px;
+    padding: 1px;
     background-color: white;
-    border: 0.5px cornflowerblue solid;
+    text-align: justify;
+    padding: 0;
+}
+Meta{
+    margin: 0;
 }

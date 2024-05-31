@@ -1,5 +1,4 @@
 .pockemonlist {
   display: flex;  
-  flex-wrap: wrap;
-  
+  flex-wrap: wrap;  
 }

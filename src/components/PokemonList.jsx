@@ -12,8 +12,11 @@ const PokemonList = ({ pockemons }) => {
                 pockemons?.map( pockemon => 
                     <PokemonCard  key={pockemon.name} 
                                   name={pockemon.name} 
-                                  image={pockemon.sprites.front_default
-                    }/>
+                                  image={pockemon.sprites.front_default}
+                                  types={pockemon.types}
+                                  id={pockemon.id}
+                                  favorite={pockemon?.favorite}
+                    />
                 )
            } 
                     
