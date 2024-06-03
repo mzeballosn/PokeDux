@@ -5,7 +5,6 @@ import PokemonCard from "./PokemonCard"
 
 // eslint-disable-next-line react/prop-types
 const PokemonList = ({ pockemons }) => {     
-    let i = 0
   return (
     <div className='pockemonlist'>              
            {

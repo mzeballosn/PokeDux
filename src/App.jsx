@@ -20,8 +20,14 @@ function App(){
   // variable y no pasara por las props, el selector subscribe el componente al estado
   // por lo que sera llamado cada vez que se haga dispach a una accion asi se puede 
   // evaluar si el valor cambio para reenderizar el componente
-  const pockemons = useSelector(state => state.pockemons) 
+  
+  
+  // anulo al estar usando  immutable
+  //const pockemons = useSelector(state => state.pockemons) 
   const loading = useSelector(state => state.loading)
+
+  // uso de immutable
+   const pockemons = useSelector((state) => state.get('pockemons')).toJS()
 
   //dispatch retorna una ref del dispacher o funcion disparador del store de redux
   // esto es utilizado para disparar las acciones

@@ -20,9 +20,9 @@ export const setLoading = (payload) =>{
     }
 }
 
-export const setFavorite = (payload)=> {
+export const setFavorite = (payload)=> {    
     return {
         type: SET_FAVORITE,
-        payload
+        payload 
     }
 }

@@ -15,8 +15,11 @@ const PokemonCard = ({ name, image, types, id, favorite }) => {
   const typesString = types?.map(ele => ele.type.name).join(', ')
 
   const handleOnFavorite = () =>{
-    dispatch(setFavorite({pockemonId: id}))
+    dispatch(setFavorite({ pockemonId: id}))
+    
   }
+
+
 
   return (
     <Card  className='container-card'    
