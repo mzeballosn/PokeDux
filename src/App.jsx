@@ -1,6 +1,6 @@
 import './App.css'
 //import { connect } from 'react-redux'  // al usar hooks ya no se usa el connect
-import { useDispatch, useSelector } from 'react-redux' 
+import { shallowEqual, useDispatch, useSelector } from 'react-redux' 
 //import { setPockemons as setPockemonsActions } from './actions' // al usar hook ya no se renombra
 //import { getPockemonsWithDetails, setPockemons } from './actions'
 import { getPockemonsWithDetails, setLoading} from './actions'
@@ -24,14 +24,16 @@ function App(){
   
   // anulo al estar usando  immutable
   //const pockemons = useSelector(state => state.pockemons) 
-  const loading = useSelector(state => state.loading)
+//  const loading = useSelector(state => state.loading)
 
   // uso de immutable
-   const pockemons = useSelector((state) => state.get('pockemons')).toJS()
+   //const pockemons = useSelector((state) => state.get('pockemons')).toJS()
+   const pockemons = useSelector((state) => state.getIn(['data','pockemons'],shallowEqual)).toJS() //shallowEqual comparación estricta y valores
+   const loading   = useSelector((state) => state.getIn(['iu','loading']))
 
   //dispatch retorna una ref del dispacher o funcion disparador del store de redux
   // esto es utilizado para disparar las acciones
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(()=>{  
     const fetchPockemon = async ( ) => {      
@@ -47,8 +49,9 @@ function App(){
       console.log(resultDetails)
       dispatch(setPockemons(resultDetails))
       */      
+      
       dispatch(getPockemonsWithDetails(result))
-      dispatch(setLoading(false)) // se maneja mejor si se controla la cantidad de items recibidos  
+      dispatch(setLoading(loading)) // se maneja mejor si se controla la cantidad de items recibidos  
 
     }  
     fetchPockemon()
@@ -60,8 +63,8 @@ function App(){
       <img src='' />
       <Searcher />            
       {
-        //!pockemons?.length ? <Spin spinning='large'/> : <PokemonList pockemons={pockemons} />      
-        loading ? <Spin spinning='large'/> : <PokemonList pockemons={pockemons} />      
+        ///!pockemons?.length ? <Spin spinning='large'/> : <PokemonList pockemons={pockemons} />      
+        loading ? <Spin spinning='l'/> : <PokemonList pockemons={pockemons} />      
       }
           
     </div>

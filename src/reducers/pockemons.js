@@ -1,5 +1,5 @@
-import { fromJS, setIn,  getIn, List } from "immutable";
-import { SET_FAVORITE, SET_LOADING, SET_POCKEMONS } from "../actions/types";
+import { fromJS,  getIn, List } from "immutable";
+import { SET_FAVORITE, SET_POCKEMONS } from "../actions/types";
 
 //sin usar la libreria inmmutable
 /* 
@@ -13,7 +13,6 @@ const initialState = {
 // en una estructura de la libreria immutable
 const initialState = fromJS({
     pockemons: [],
-    loading: false,
     favorites:false,
 })
 
@@ -73,13 +72,7 @@ export const pockemonReducer = (state = initialState, action) => {
             
             return state.setIn(['pockemons', currentPokemonIndex, 'favorite'], !isFavorite);
             
-            /*
-        case SET_LOADING:
-            return {
-                ...state,
-                loading:action.payload
-            }
-        */
+        
         default:
             return state
     }
