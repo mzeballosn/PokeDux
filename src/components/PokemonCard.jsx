@@ -3,7 +3,8 @@ import './pockemonCard.css'
 import { Card } from 'antd'
 import StartButton from './StartButton'
 import { useDispatch } from 'react-redux'
-import { setFavorite } from '../actions'
+import { setFavorite } from '../slices/dataSlice'
+//import { setFavorite } from '../actions' //se quita para llamar desde slicte
 
 
 

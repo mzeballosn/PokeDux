@@ -3,13 +3,14 @@ import './App.css'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux' 
 //import { setPockemons as setPockemonsActions } from './actions' // al usar hook ya no se renombra
 //import { getPockemonsWithDetails, setPockemons } from './actions'
-import { getPockemonsWithDetails, setLoading} from './actions'
+//import { getPockemonsWithDetails, setLoading} from './actions' // ya no lo usamos, usamos redux/toolkit 
 import   PokemonList from './components/PokemonList'
 import { useEffect } from 'react'
 //import   {getPokemon, getPokemonDetails} from './api'
-import   {getPokemon} from './api'
+//import   {getPokemon} from './api' // ya no lo usamos, usamos redux/toolkit 
 import   Searcher from './components/Searcher'
 import { Spin } from 'antd'
+import { fetchPockemonWithDetails } from './slices/dataSlice'
 
 //function App({ pockemons, setPockemons }) {    // no se pasan los props al usar hooks
   //const [pockemons, setPockemons] = useState([]) // useState no se usar por tener Redux
@@ -28,34 +29,46 @@ function App(){
 
   // uso de immutable
    //const pockemons = useSelector((state) => state.get('pockemons')).toJS()
-   const pockemons = useSelector((state) => state.getIn(['data','pockemons'],shallowEqual)).toJS() //shallowEqual comparación estricta y valores
-   const loading   = useSelector((state) => state.getIn(['iu','loading']))
+   //dejo de usar immutable para usar redux/toolkit
+   //const pockemons = useSelector((state) => state.getIn(['data','pockemons'],shallowEqual)).toJS() //shallowEqual comparación estricta y valores
+   //const loading   = useSelector((state) => state.getIn(['iu','loading']))
+
+   const pockemons = useSelector((state) => state.data.pockemons,shallowEqual)
+   //const loading = useSelector((state) => state.iu.loading)
+   const loading = useSelector((state)=> state.ui.loading)
 
   //dispatch retorna una ref del dispacher o funcion disparador del store de redux
   // esto es utilizado para disparar las acciones
   const dispatch = useDispatch()
 
   useEffect(()=>{  
+    //dejamos de usar para implementar con redux toolkit
+    /*
     const fetchPockemon = async ( ) => {      
-      dispatch(setLoading(true)) // se maneja mejor si se controla la cantidad de items recibidos 
-      const result = await getPokemon()
+      //dejamos de usar para implementar con redux toolkit
+      //dispatch(setLoading(true)) // se maneja mejor si se controla la cantidad de items recibidos 
+      //const result = await getPokemon()
       
       // Se dejo de utilizar para obtener el detalle o imagen del pockemon
       //dispatch(setPockemons(result))  
     
       // Se utilizo Pomise.All para encadenar las promesas y obtener la imagen cover del pokemon
-      /*
-      const resultDetails = await Promise.all(result.map(pockemon => getPokemonDetails(pockemon)))
-      console.log(resultDetails)
-      dispatch(setPockemons(resultDetails))
-      */      
+      //const resultDetails = await Promise.all(result.map(pockemon => getPokemonDetails(pockemon)))
+      //console.log(resultDetails)
+      //dispatch(setPockemons(resultDetails))
+           
       
-      dispatch(getPockemonsWithDetails(result))
-      dispatch(setLoading(loading)) // se maneja mejor si se controla la cantidad de items recibidos  
+      //dejamos de usar para implementar con redux toolkit
+      //dispatch(getPockemonsWithDetails(result))
+      //dispatch(setLoading(loading)) // se maneja mejor si se controla la cantidad de items recibidos  
+
+
 
     }  
     fetchPockemon()
+    */
     
+    dispatch(fetchPockemonWithDetails())
   },[])
    
   return (
@@ -64,7 +77,7 @@ function App(){
       <Searcher />            
       {
         ///!pockemons?.length ? <Spin spinning='large'/> : <PokemonList pockemons={pockemons} />      
-        loading ? <Spin spinning='l'/> : <PokemonList pockemons={pockemons} />      
+        loading ? <Spin spinning='large'/> : <PokemonList pockemons={pockemons} />      
       }
           
     </div>
